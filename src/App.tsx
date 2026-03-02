@@ -5,6 +5,7 @@ import { createMockData } from './data/createMockData';
 import { EMPTY_FORM, Item } from './data/datamodels';
 import { PlusIcon, TrashIcon } from './ui_modules/symbols';
 import { ItemForm } from './ui_modules/itemModalForm';
+import { filterItems } from './utils/filter';
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,7 +57,14 @@ const App: React.FC = () => {
     setEditIndex(null);
   };
 
-  const visibleItems = items;
+  const visibleItems = filterItems(items, searchQuery)
+    .filter((item) => !categoryFilter || item.category === categoryFilter)
+    .sort((a, b) => {
+    const valueA = (a.name || a.id || '').toString().toLowerCase();
+    const valueB = (b.name || b.id || '').toString().toLowerCase();
+    return valueA.localeCompare(valueB);
+  });
+;
 
   return (
     <div className="App">
