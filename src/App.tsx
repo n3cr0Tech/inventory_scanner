@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { createMockData } from './data/createMockData';
 import { EMPTY_FORM, Item } from './data/datamodels';
-import { PlusIcon, TrashIcon } from './ui_modules/symbols';
+import { PlusIcon, SearchIcon, TrashIcon, XIcon } from './ui_modules/symbols';
 import { ItemForm } from './ui_modules/itemModalForm';
 import { filterItems } from './utils/filter';
 
@@ -68,6 +68,36 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      {/* ── Search bar ── */}
+      <div className="search-bar-wrapper">
+        <div className="search-input-wrap">
+          <span className="search-icon"><SearchIcon /></span>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search by name, ID or category…"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button className="search-clear" onClick={() => setSearchQuery("")}>
+              <XIcon />
+            </button>
+          )}
+        </div>
+        <select
+          className="category-filter"
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Food">Food</option>
+          <option value="Books">Books</option>
+        </select>
+      </div>
+      
       <div className="cards-wrapper">
         <div className="card-container">
           {items.length === 0 && (
