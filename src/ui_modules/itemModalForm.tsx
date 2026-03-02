@@ -1,4 +1,5 @@
 import { Item } from "../data/datamodels";
+import { SafeScanner } from "./safeScanner";
 
 // Reusable form fields shared by Add and Edit modals
 export const ItemForm: React.FC<{

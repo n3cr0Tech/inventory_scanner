@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { createMockData } from './data/createMockData';
 import { EMPTY_FORM, Item } from './data/datamodels';
-import { PlusIcon } from './ui_modules/symbols';
+import { PlusIcon, TrashIcon } from './ui_modules/symbols';
+import { ItemForm } from './ui_modules/itemModalForm';
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
